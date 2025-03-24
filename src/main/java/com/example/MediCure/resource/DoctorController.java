@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/doctor")
+@CrossOrigin(origins = "http://localhost:3000") // Allow frontend access
 public class DoctorController
 {
     @Autowired

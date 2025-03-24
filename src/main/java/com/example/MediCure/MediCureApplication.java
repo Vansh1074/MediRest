@@ -2,6 +2,8 @@ package com.example.MediCure;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import weka.classifiers.Classifier;
+import weka.classifiers.trees.J48;
 
 @SpringBootApplication
 public class MediCureApplication
@@ -10,5 +12,6 @@ public class MediCureApplication
 	{
 		SpringApplication.run(MediCureApplication.class, args);
 		System.out.println("Medicure");
+
 	}
 }

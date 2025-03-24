@@ -12,9 +12,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/appointment")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AppointmentController
 {
     @Autowired
