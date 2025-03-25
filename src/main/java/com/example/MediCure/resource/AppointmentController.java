@@ -3,6 +3,7 @@ package com.example.MediCure.resource;
 import com.example.MediCure.model.Appointment;
 import com.example.MediCure.model.UserInfo;
 import com.example.MediCure.repository.AppointmentRepo;
+import com.example.MediCure.service.SpecialistPredictionModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,8 @@ public class AppointmentController
 {
     @Autowired
     AppointmentRepo appointmentRepo;
+    @Autowired
+    private SpecialistPredictionModel predictionModel;
 
     @GetMapping(value = "/show")
     public ResponseEntity<List<Appointment>> showAppointment(){
@@ -79,5 +82,17 @@ public class AppointmentController
         System.out.println(curDate);
         List<Appointment> list = appointmentRepo.getAllPastAppointmentByDocId(Integer.parseInt(docId),currentDate);
         return new ResponseEntity<>(list,HttpStatus.OK);
+    }
+
+    @GetMapping("/trainModel")
+    public String trainModel() {
+        predictionModel.trainModel();
+        return "Model trained successfully!";
+    }
+
+    // Endpoint to predict the specialist based on symptoms
+    @PostMapping("/predictSpecialist")
+    public String predictSpecialist(@RequestBody double[] symptomVector) {
+        return predictionModel.predictSpecialist(symptomVector);
     }
 }
